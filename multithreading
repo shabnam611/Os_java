@@ -1,0 +1,62 @@
+package taskthread;
+
+/**
+ *
+ * @author shabnam
+ */
+public class TaskThread {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        //create task 
+                Runnable printA = new PrintChar('a', 100);
+                Runnable printB = new PrintChar('b', 100);
+                Runnable print100 = new PrintNum(100);
+             //create threads
+                Thread thread1 = new Thread(printA);
+                Thread thread2 = new Thread(printB);
+                Thread thread3 = new Thread(print100);
+                
+                //start threads 
+                thread1.start();
+                thread2.start();
+                thread3.start();
+    }
+    
+}
+class PrintChar implements Runnable{
+    private char charToprint;
+    private int times;
+    
+    public PrintChar(char c, int t){
+        charToprint = c;
+        times = t; 
+    }
+    
+    @Override
+    public void run(){
+        for(int i=0;i<100;i++)
+        {
+            System.out.print(charToprint);
+        }
+    }
+}
+
+class PrintNum implements Runnable{
+    private int lastnum;
+    
+    public PrintNum(int n){
+        lastnum = n;
+    }
+    
+    @Override
+    public void run(){
+        for(int i=0;i<=lastnum;i++)
+        {
+          System.out.print(" "+i); 
+        }
+    }
+}
